@@ -23,6 +23,3 @@ def bingConnect(origin, destination):
     dist = response['resourceSets'][0]['resources'][0]['results'][0]['travelDistance']
     return dist
     
-
-if __name__ == "__main__":
-    bingConnect((43.494171, -80.549933), (41.494171, -78.549933))
