@@ -23,9 +23,9 @@ def hello_world():
 # auth/login
 @app.route('/auth/login', methods=['POST'])
 def login():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
+    # data = request.get_json()
+    username = request.args.get('username')
+    password = request.args.getO('password')
     client = connection.connect()
     db = client.ewaste
     users = db.users
@@ -43,9 +43,9 @@ def login():
 # auth/register
 @app.route('/auth/register', methods=['POST'])
 def register():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
+    # data = request.get_json()
+    username = request.args.get('username')
+    password = request.args.getO('password')
     client = connection.connect()
     db = client.ewaste
     users = db.users
