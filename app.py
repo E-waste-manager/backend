@@ -21,11 +21,11 @@ def hello_world():
     return jsonify({'data': data})
 
 # auth/login
-@app.route('/auth/login', methods=['POST'])
+@app.route('/auth/login', methods=['GET'])
 def login():
     # data = request.get_json()
     username = request.args.get('username')
-    password = request.args.getO('password')
+    password = request.args.get('password')
     client = connection.connect()
     db = client.ewaste
     users = db.users
@@ -36,7 +36,7 @@ def login():
             'username': username,
         }
         token = jwt.encode(payload, token_secret, algorithm='HS256')
-        return jsonify({'message': 'success', 'token': token, 'loginTime' : datetime.datetime.now()})
+        return jsonify(token)
     else:
         return jsonify({'message': 'failure'})
 
@@ -54,7 +54,7 @@ def register():
     users = users.insert_one({'username': username, 'password': password})
     token = jwt.encode({'username': username}, token_secret, algorithm='HS256')
     if users:
-        return jsonify({'message': 'success', 'token': token, 'loginTime' : datetime.datetime.now()})
+        return jsonify(token)
     else:
         return jsonify({'message': 'failure'})
 
