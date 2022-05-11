@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import requests
 from xml.etree import ElementTree as ET
 import json
+import certifi
 
 from requests import request
 
@@ -13,7 +14,7 @@ password = os.getenv("password")
 bing_key = os.getenv("BING_KEY")
 
 def connect():
-    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@cluster0.jvpq2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@cluster0.jvpq2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tls=True, tlsCAFile=certifi.where())
     return client
 
 def bingConnect(origin, destination):
