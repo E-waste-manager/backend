@@ -63,7 +63,7 @@ def waste():
     data = request.get_json()
     origin = (data['latitude'], data['longitude'])
     providers = ranking.ranking(origin)
-    return jsonify({'providers': providers})
+    return jsonify(providers)
     
 if __name__ == '__main__':
     app.run(debug=True)
