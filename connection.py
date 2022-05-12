@@ -19,8 +19,14 @@ def connect():
 
 def bingConnect(origin, destination):
     routeUrl = f"https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins={origin[0]},{origin[1]}&destinations={destination[0]},{destination[1]}&travelMode=Driving&key={bing_key}"
-    request = requests.get(routeUrl)
-    response = request.json()
-    dist = response['resourceSets'][0]['resources'][0]['results'][0]['travelDistance']
+    print(routeUrl)
+    try:
+        request = requests.get(routeUrl)
+        response = request.json()
+        # print(response)
+        dist = response['resourceSets'][0]['resources'][0]['results'][0]['travelDistance']
+    except:
+        dist = -1
+        print("error")
     return dist
     

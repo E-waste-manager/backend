@@ -61,8 +61,8 @@ def register():
 @app.route('/api/waste', methods=['POST'])
 def waste():
     data = request.get_json()
-    origin = (data['latitude'], data['longitude'])
-    
+    origin = {'lat': data['latitude'], 'lng': data['longitude']}
+    print(type(origin))
     providers = ranking.ranking(origin)
     print(providers)
     # temp = providers
