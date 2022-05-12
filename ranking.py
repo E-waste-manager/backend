@@ -17,6 +17,6 @@ def ranking(origin):
     for provider in list_of_providers:
         provider_location = (provider['latitude'], provider['longitude'])
         dist = connection.bingConnect(origin, provider_location)
-        ranked_list.append((provider['name'], dist))
-    ranked_list.sort(key=lambda x: x[1])
+        ranked_list.append({'name': provider['name'], 'distance': dist, 'address': provider['address']})
+    ranked_list.sort(key=lambda x: x['distance'])
     return ranked_list
